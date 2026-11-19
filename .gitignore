@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# MLflow
+mlflow.db
+mlruns/
+
+# DVC local cache
+.dvc/cache/
+
+# Temporary files
+*.log

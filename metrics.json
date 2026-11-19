@@ -1,0 +1,24 @@
+{
+    "best_model": "RandomForest",
+    "best_accuracy": 1.0,
+    "all_models": {
+        "LogisticRegression": {
+            "accuracy": 0.9722222222222222,
+            "precision": 0.974074074074074,
+            "recall": 0.9722222222222222,
+            "f1_score": 0.9719701552732407
+        },
+        "RandomForest": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0
+        },
+        "SVC": {
+            "accuracy": 0.9722222222222222,
+            "precision": 0.974074074074074,
+            "recall": 0.9722222222222222,
+            "f1_score": 0.9719701552732407
+        }
+    }
+}

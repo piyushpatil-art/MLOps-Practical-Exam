@@ -1,0 +1,115 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py
+    deps:
+    - path: src/load_data.py
+      hash: md5
+      md5: 6f95d942b61b0a935f4d7677664410ee
+      size: 624
+    outs:
+    - path: data/raw/wine.csv
+      hash: md5
+      md5: e6dccd29b15c08636f50bd2c0fd80a6a
+      size: 12440
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw/wine.csv
+      hash: md5
+      md5: e6dccd29b15c08636f50bd2c0fd80a6a
+      size: 12440
+    - path: src/preprocess.py
+      hash: md5
+      md5: 8bb21990b338dd4a49c8c4f05c12d4a1
+      size: 1931
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 4b6b06204f01687445f96355bbbbc7bd
+      size: 2784
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 795d6f1d19a0759cdabcfec0be57fd7b
+      size: 10454
+    - path: data/processed/wine_features.parquet
+      hash: md5
+      md5: 3aa1b9e0225baca7617a82dd0e47299a
+      size: 18830
+  feature_store:
+    cmd: python src/feature_store.py apply && python src/feature_store.py 
+      materialize && python src/feature_store.py check
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 795d6f1d19a0759cdabcfec0be57fd7b
+      size: 10454
+    - path: data/processed/wine_features.parquet
+      hash: md5
+      md5: 3aa1b9e0225baca7617a82dd0e47299a
+      size: 18830
+    - path: feature_repo/feature_store.yaml
+      hash: md5
+      md5: 0bd66cfd355aca8411b0b55bfcd41d01
+      size: 136
+    - path: src/feature_store.py
+      hash: md5
+      md5: ef866707febdbb7636201263ad015edb
+      size: 2706
+    outs:
+    - path: feature_repo/data/online_store.db
+      hash: md5
+      md5: ac9d5e9c504b8cb8668e115a3e15c789
+      size: 466944
+    - path: feature_repo/data/registry.db
+      hash: md5
+      md5: 9fbdc5cf4ed50c399b5ad6e55948b517
+      size: 1961
+  train_and_track:
+    cmd: python src/mlflow_tracking.py
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 4b6b06204f01687445f96355bbbbc7bd
+      size: 2784
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 795d6f1d19a0759cdabcfec0be57fd7b
+      size: 10454
+    - path: data/processed/wine_features.parquet
+      hash: md5
+      md5: 3aa1b9e0225baca7617a82dd0e47299a
+      size: 18830
+    - path: feature_repo/data/online_store.db
+      hash: md5
+      md5: ac9d5e9c504b8cb8668e115a3e15c789
+      size: 466944
+    - path: feature_repo/data/registry.db
+      hash: md5
+      md5: 9fbdc5cf4ed50c399b5ad6e55948b517
+      size: 1961
+    - path: src/feature_store.py
+      hash: md5
+      md5: ef866707febdbb7636201263ad015edb
+      size: 2706
+    - path: src/mlflow_tracking.py
+      hash: md5
+      md5: f9925dba36f8b50f3205ac96b70d6644
+      size: 2674
+    - path: src/model_training.py
+      hash: md5
+      md5: 5c28662b38084b7101aa71821fa138d4
+      size: 2364
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 54304a0d158f08092e0e49b4afff12f6
+      size: 679
+    - path: models/best_model.joblib
+      hash: md5
+      md5: e916f24ee7ff278a2f07f2b9a323add6
+      size: 427553
+    - path: models/best_model.txt
+      hash: md5
+      md5: 209686d1a95baa62c75deb0bb7477f9f
+      size: 44

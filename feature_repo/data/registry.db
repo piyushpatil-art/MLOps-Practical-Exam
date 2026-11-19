@@ -1,0 +1,57 @@
+
+]
+=
+wineOne row per wine sample"wine_idJwine_classification
+Ó£û×¹î®Ó£û×¹î®
+J
+*
+__dummy"
+__dummy_idJwine_classification
+Ó£û×ˆëú®Ó£û×ˆëú®1"$372ea16d-d431-42a9-bb1e-5a7f25f9085f*Ú£û×àï±¾2ü
+½
+wine_featureswine_classificationwine"
+alcohol"
+
+malic_acid"
+ash"
+alcalinity_of_ash"
+	magnesium"
+total_phenols"
+
+flavanoids"
+nonflavanoid_phenols"
+proanthocyanins"
+color_intensity"
+hue" 
+od280/od315_of_diluted_wines"
+proline*
+datasetsklearn_wine2€†°–:ìevent_timestampZmkC:\Users\ADMIN\Documents\Study\5th Sem\MLOPs_Exam\MLOps-Practical-Exam\data\processed\wine_features.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢wine_features_source’Ò£û×°˜³­"Ó£û×à€Œ­@b
+wine_id’latest:
+Ó£û× ß¨®Ú£û×èÿ¾
+ÚËÁ¨ŸáaÚ£û×¨Ÿáa0b‚event_timestampZmkC:\Users\ADMIN\Documents\Study\5th Sem\MLOPs_Exam\MLOps-Practical-Exam\data\processed\wine_features.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢wine_features_sourceªwine_classification’Ò£û×°˜³­"Ó£û×à€Œ­z;
+wine_classification$e92cda79-1165-4637-959d-f6076c4a17e6Š5
+
+wine_classification
+Ó£û×˜²­­Ó£û×˜²­­’Ê
+Ç
+wine_featureswine_classification"feature_view*Ş
+½
+wine_featureswine_classificationwine"
+alcohol"
+
+malic_acid"
+ash"
+alcalinity_of_ash"
+	magnesium"
+total_phenols"
+
+flavanoids"
+nonflavanoid_phenols"
+proanthocyanins"
+color_intensity"
+hue" 
+od280/od315_of_diluted_wines"
+proline*
+datasetsklearn_wine2€†°–:ìevent_timestampZmkC:\Users\ADMIN\Documents\Study\5th Sem\MLOPs_Exam\MLOps-Practical-Exam\data\processed\wine_features.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢wine_features_source’Ò£û×°˜³­"Ó£û×à€Œ­@b
+wine_id’latest
+Ó£û× ß¨®Ó£û× ß¨®2Ó£û×ˆ›ë®B$3ae0b970-2bb1-4692-86ea-c2aba4f4941d
