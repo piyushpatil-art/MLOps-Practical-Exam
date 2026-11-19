@@ -1,0 +1,54 @@
+stages:
+  load_data:
+    cmd: python src/load_data.py
+    deps:
+      - src/load_data.py
+    outs:
+      - data/raw/wine.csv:
+          cache: true
+
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw/wine.csv
+    outs:
+      - data/processed/train.csv:
+          cache: true
+      - data/processed/test.csv:
+          cache: true
+      - data/processed/wine_features.parquet:
+          cache: true
+
+  feature_store:
+    cmd: python src/feature_store.py apply && python src/feature_store.py materialize && python src/feature_store.py check
+    deps:
+      - src/feature_store.py
+      - feature_repo/feature_store.yaml
+      - data/processed/train.csv
+      - data/processed/wine_features.parquet
+    outs:
+      - feature_repo/data/registry.db:
+          cache: false
+      - feature_repo/data/online_store.db:
+          cache: false
+
+  train_and_track:
+    cmd: python src/mlflow_tracking.py
+    deps:
+      - src/mlflow_tracking.py
+      - src/model_training.py
+      - src/feature_store.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - data/processed/wine_features.parquet
+      - feature_repo/data/registry.db
+      - feature_repo/data/online_store.db
+    outs:
+      - models/best_model.joblib:
+          cache: false
+      - models/best_model.txt:
+          cache: false
+    metrics:
+      - metrics.json:
+          cache: false
