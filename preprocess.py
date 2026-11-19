@@ -1,4 +1,4 @@
-"""Student 2: validate and split the Wine dataset reproducibly."""
+
 from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -25,8 +25,7 @@ def main():
         raise ValueError(f"Missing required columns: {missing_columns}")
     if df[required].isnull().any().any():
         raise ValueError("Dataset contains missing values; inspect the source data.")
-
-    # Stable row IDs allow Feast features to be joined back to their labels.
+        
     df = df[required].copy()
     df.insert(0, "wine_id", range(1, len(df) + 1))
 
@@ -38,7 +37,7 @@ def main():
     train_df.to_csv(PROCESSED / "train.csv", index=False)
     test_df.to_csv(PROCESSED / "test.csv", index=False)
 
-    # Feast's file source requires an event timestamp column.
+  
     feature_df = df[["wine_id"] + FEATURES].copy()
     feature_df["event_timestamp"] = pd.Timestamp.now(tz="UTC")
     feature_df.to_parquet(PROCESSED / "wine_features.parquet", index=False)
